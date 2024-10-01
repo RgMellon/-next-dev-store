@@ -1,3 +1,4 @@
+import { AddToCartButton } from '@/components/add-to-cart-button'
 import { api } from '@/data/api'
 import { Product } from '@/data/types/product'
 import { Metadata } from 'next'
@@ -24,7 +25,7 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: ProductProps) {
   const product = await getProduct(params.slug)
-  console.log(product)
+
   return (
     <div className="relative grid max-h-[860px] grid-cols-3">
       <div className="col-span-2 overflow-hidden">
@@ -84,12 +85,7 @@ export default async function ProductPage({ params }: ProductProps) {
           </div>
         </div>
 
-        <button
-          type="button"
-          className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white"
-        >
-          Adicionar ao carrinho
-        </button>
+        <AddToCartButton productId={product.id.toString()} />
       </div>
     </div>
   )
